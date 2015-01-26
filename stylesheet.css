@@ -35,3 +35,11 @@ div{
   margin-right:0px;
   background-color:#A7C8E0;
 }
+
+#middle{
+  width:78%;
+  height:400px;
+  position:relative;
+  margin:auto;
+  background-color:#A7C8E0;
+}
