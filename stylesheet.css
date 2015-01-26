@@ -1,6 +1,12 @@
+*{
+  border:1px solid black;
+}
+
 div{
   background-color:#998311;
   border:1px solid black;
+  display:incline-block;
+  border-radius:5px;
 }
 
 
@@ -11,7 +17,7 @@ div{
 }
 
 #top p{
-  font-size:20px;
+  font-size:30px;
   color:white;
   position:relative;
   margin-left:40%;
@@ -27,6 +33,7 @@ div{
   float:left;
   background-color:#A7C8E0;
 }
+
 #right{
   width:10%;
   height:400px;
