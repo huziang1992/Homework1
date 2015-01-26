@@ -50,3 +50,9 @@ div{
   margin:auto;
   background-color:#A7C8E0;
 }
+
+table{
+  width:100%;
+  height:100%;
+  margin:auto;
+}
