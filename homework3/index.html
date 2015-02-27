@@ -157,7 +157,6 @@
 				       .attr("y", function(d){return h-padding-yscale(d.tM) ; })
 				       .attr("width", w / data1.length-barpadding)
 				       .attr("height", function(d){return yscale(d.tM);})
-				       .attr("fill", "red")
 				       .attr("class","tM");
 
 				    svg.selectAll(".tS")
@@ -168,8 +167,13 @@
 				       .attr("y", function(d){return h-padding-yscale(d.tS)-yscale(d.tM) ; })
 				       .attr("width", w / data1.length-barpadding)
 				       .attr("height", function(d){return yscale(d.tS);})
-				       .attr("fill", "white")
 				       .attr("class","tS");
+
+				       d3.select("rect")
+						.on("click", function() {
+             				alert("Hey, don't click that!");
+             				console.log("hi");
+        				 });
 
 				       
 			     });

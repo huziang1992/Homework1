@@ -71,15 +71,23 @@ th{
 .homework3 svg{
 
   margin-top: 5%;
+  float:center;
   margin-left:5%;
 }
 .tT{
   opacity: 1;
+  fill: black;
 }
 .tM{
   opacity: 0.5;
+  fill: red;
 
 }
 .tS{
   opacity:0.8;
+  fill: white;
+}
+
+rect:hover {
+  fill: orange;
 }
