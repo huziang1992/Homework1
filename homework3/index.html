@@ -127,7 +127,7 @@
 					var wsvg=1000;
 					var w=800;
 					var h=400;
-					var padding=20;
+					var padding=60;
 					var barpadding=2;
 
 
@@ -139,12 +139,21 @@
 					svg=d3.select('.homework3').append("svg");
 					svg.attr("width",wsvg).attr("height",h);
 
+               		svg.append("text")
+						.text(function(d){return "Comparison:Intructional Time in Mathematics and Science";})
+						.attr("x", 400)
+						.attr("y", 30)
+						.attr("font-family", "sans-serif")
+						.attr("font-size", "28px")
+						.attr("fill", "black")
+						.attr("text-anchor", "middle");
+
 					svg.selectAll("rect")
 				       .data(data1)
 				       .enter()
 				       .append("rect")
 				       .attr("x", function(d,i){return i*(w/data1.length);})
-				       .attr("y", function(d){return h-padding-yscale(d.tT) ; })
+				       .attr("y", function(d){return h-yscale(d.tT) ; })
 				       .attr("width", w/ data1.length-barpadding)
 				       .attr("height", function(d){return yscale(d.tT);})
 				       .attr("class","tT");
@@ -154,7 +163,7 @@
 				       .enter()
 				       .append("rect")
 				       .attr("x", function(d,i){return i*(w/data1.length);})
-				       .attr("y", function(d){return h-padding-yscale(d.tM) ; })
+				       .attr("y", function(d){return h-yscale(d.tM) ; })
 				       .attr("width", w / data1.length-barpadding)
 				       .attr("height", function(d){return yscale(d.tM);})
 				       .attr("class","tM");
@@ -164,16 +173,12 @@
 				       .enter()
 				       .append("rect")
 				       .attr("x", function(d,i){return i*(w/data1.length);})
-				       .attr("y", function(d){return h-padding-yscale(d.tS)-yscale(d.tM) ; })
+				       .attr("y", function(d){return h-yscale(d.tS)-yscale(d.tM) ; })
 				       .attr("width", w / data1.length-barpadding)
 				       .attr("height", function(d){return yscale(d.tS);})
 				       .attr("class","tS");
 
-				       d3.select("rect")
-						.on("click", function() {
-             				alert("Hey, don't click that!");
-             				console.log("hi");
-        				 });
+
 
 				       
 			     });

@@ -70,7 +70,7 @@ th{
 }
 .homework3 svg{
 
-  margin-top: 5%;
+  margin-top: 0;
   float:center;
   margin-left:5%;
 }
@@ -87,7 +87,6 @@ th{
   opacity:0.8;
   fill: white;
 }
-
-rect:hover {
-  fill: orange;
+rect:hover{
+  fill:orange;
 }
