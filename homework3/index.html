@@ -12,17 +12,15 @@
 	</head>
 
 	<body>
-			<script type="text/javascript">
-				var sourse
 
-				d3.json("data.json",function(data){ console.log(data);});
-
-
-			</script>
 		
 			<div ID="head"><p>IE590 Ziang Hu</p></div>
 			
 			<div id="accordion">
+				<h3>homework3</h3>
+				<div class="homework3">
+					
+				</div>
 				<h3>homework2</h3>
 				<div class="homework2">
 				<div ID="requirement">
@@ -120,6 +118,38 @@
 
 			</div>
 
+			<script type="text/javascript">
+
+				
+
+				d3.json("data.json",function(data1){ 
+					
+					var w=1000;
+					var h=500;
+					var padding=20;
+					var barpadding=2;
+
+
+					console.log(d3.min(data1,function(d){return d.tT;}));
+					
+
+					var yscale=d3.scale.linear().domain([0,d3.max(data1,function(d){return d.tT;})]).range([h-padding,0]);
+
+					svg=d3.selectAll('.homework3').append("svg");
+					svg.attr("width",w).attr("height",h);
+
+					svg.selectAll("rect")
+				       .data(data1)
+				       .enter()
+				       .append("rect")
+				       .attr("x", function(d,i){return i*(w/data1.length);})
+				       .attr("y", function(d){return h-yscale(d.tT) ; })
+				       .attr("width", w / data1.length-barpadding)
+				       .attr("height", function(d){return yscale(d.tT);})
+				       .attr("fill", function(d){return "rgb(0,0,"+(d*10)+")"});
+				       
+			     });
+			</script>
 
 	</body>
 
