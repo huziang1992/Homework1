@@ -124,29 +124,53 @@
 
 				d3.json("data.json",function(data1){ 
 					
-					var w=1000;
-					var h=500;
+					var wsvg=1000;
+					var w=800;
+					var h=400;
 					var padding=20;
 					var barpadding=2;
 
 
-					console.log(d3.min(data1,function(d){return d.tT;}));
+					max=d3.max(data1,function(d){return d.tT;});
 					
 
-					var yscale=d3.scale.linear().domain([0,d3.max(data1,function(d){return d.tT;})]).range([h-padding,0]);
+					var yscale=d3.scale.linear().domain([0,max]).range([0,h-padding]);
 
-					svg=d3.selectAll('.homework3').append("svg");
-					svg.attr("width",w).attr("height",h);
+					svg=d3.select('.homework3').append("svg");
+					svg.attr("width",wsvg).attr("height",h);
 
 					svg.selectAll("rect")
 				       .data(data1)
 				       .enter()
 				       .append("rect")
 				       .attr("x", function(d,i){return i*(w/data1.length);})
-				       .attr("y", function(d){return h-yscale(d.tT) ; })
-				       .attr("width", w / data1.length-barpadding)
+				       .attr("y", function(d){return h-padding-yscale(d.tT) ; })
+				       .attr("width", w/ data1.length-barpadding)
 				       .attr("height", function(d){return yscale(d.tT);})
-				       .attr("fill", function(d){return "rgb(0,0,"+(d*10)+")"});
+				       .attr("class","tT");
+				       
+				    svg.selectAll(".tM")
+				    	.data(data1)
+				       .enter()
+				       .append("rect")
+				       .attr("x", function(d,i){return i*(w/data1.length);})
+				       .attr("y", function(d){return h-padding-yscale(d.tM) ; })
+				       .attr("width", w / data1.length-barpadding)
+				       .attr("height", function(d){return yscale(d.tM);})
+				       .attr("fill", "red")
+				       .attr("class","tM");
+
+				    svg.selectAll(".tS")
+				    	.data(data1)
+				       .enter()
+				       .append("rect")
+				       .attr("x", function(d,i){return i*(w/data1.length);})
+				       .attr("y", function(d){return h-padding-yscale(d.tS)-yscale(d.tM) ; })
+				       .attr("width", w / data1.length-barpadding)
+				       .attr("height", function(d){return yscale(d.tS);})
+				       .attr("fill", "white")
+				       .attr("class","tS");
+
 				       
 			     });
 			</script>

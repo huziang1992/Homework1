@@ -68,3 +68,18 @@ th{
  	font-size:20px;
  	margin-top:0px;
 }
+.homework3 svg{
+
+  margin-top: 5%;
+  margin-left:5%;
+}
+.tT{
+  opacity: 1;
+}
+.tM{
+  opacity: 0.5;
+
+}
+.tS{
+  opacity:0.8;
+}
