@@ -159,6 +159,9 @@
 				       .attr("width", w/ data1.length-barpadding)
 				       .attr("height", function(d){return yscale(d.tT);})
 				       .attr("class","tT");
+				       .attr("class","tT")
+				      	.append("svg:title")
+   						.text(function(d) { return d.Country +":"+ d.tT; });
 				       
 				    svg.selectAll(".tM")
 				    	.data(data1)
