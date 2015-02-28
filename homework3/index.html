@@ -120,12 +120,15 @@
 
 			<script type="text/javascript">
 
-				
+					var wsvg=1000;
+					var hsvg=450
+					
+					svg=d3.select('.homework3').append("svg");
+					svg.attr("width",wsvg).attr("height",hsvg);
 
 				d3.json("data.json",function(data1){ 
 					
-					var wsvg=1000;
-					var hsvg=450
+					
 					var w=800;
 					var h=400;
 					var padding=50;
@@ -138,17 +141,9 @@
 					var yscale=d3.scale.linear().domain([0,max]).range([0,h-padding]);
 					var yscale1=d3.scale.linear().domain([0,max]).range([h-padding,0]);
 
-					svg=d3.select('.homework3').append("svg");
-					svg.attr("width",wsvg).attr("height",hsvg);
 
-               		svg.append("text")
-						.text(function(d){return "Comparison:Intructional Time in Mathematics and Science";})
-						.attr("x", 450)
-						.attr("y", 30)
-						.attr("font-family", "sans-serif")
-						.attr("font-size", "28px")
-						.attr("fill", "black")
-						.attr("text-anchor", "middle");
+
+
 
 					svg.selectAll("rect")
 				       .data(data1)
@@ -158,10 +153,9 @@
 				       .attr("y", function(d){return h-yscale(d.tT) ; })
 				       .attr("width", w/ data1.length-barpadding)
 				       .attr("height", function(d){return yscale(d.tT);})
-				       .attr("class","tT");
 				       .attr("class","tT")
 				      	.append("svg:title")
-   						.text(function(d) { return d.Country +":"+ d.tT; });
+   						.text(function(d) { return d.Country +" Total time:"+ d.tT; });
 				       
 				    svg.selectAll(".tM")
 				    	.data(data1)
@@ -171,7 +165,9 @@
 				       .attr("y", function(d){return h-yscale(d.tM); })
 				       .attr("width", w / data1.length-barpadding)
 				       .attr("height", function(d){return yscale(d.tM);})
-				       .attr("class","tM");
+				       .attr("class","tM")
+				       .append("svg:title")
+   						.text(function(d) { return d.Country +" Time in Math:"+ d.tM; });
 
 				    svg.selectAll(".tS")
 				    	.data(data1)
@@ -181,7 +177,9 @@
 				       .attr("y", function(d){return h-yscale(d.tS)-yscale(d.tM); })
 				       .attr("width", w / data1.length-barpadding)
 				       .attr("height", function(d){return yscale(d.tS);})
-				       .attr("class","tS");
+				       .attr("class","tS")
+				       .append("svg:title")
+   						.text(function(d) { return d.Country +" Time in Science:"+ d.tS; });
 
 				    svg.append("rect")
 				    	.attr("x", 850)
@@ -238,9 +236,32 @@
 				        .attr("transform", "translate(33," +  (padding) + ")")
 				        .call(yAxis);
 
+				    svg.append("text")
+						.text(function(d){return "Comparison:Intructional Time in Mathematics and Science";})
+						.attr("x", 450)
+						.attr("y", 30)
+						.attr("font-family", "sans-serif")
+						.attr("font-size", "28px")
+						.attr("fill", "black")
+						.attr("text-anchor", "middle");
+
+				    svg.append("text")
+				    	.attr("x", 40)
+				       .attr("y", 430)
+				       .text("Data source: http://nces.ed.gov/programs/digest/d12/tables/dt12_460.asp");
+
+				    svg.append("text")
+				    	.attr("x", 700)
+				       .attr("y", 60)
+				       .text("----By Ziang Hu");
 
 				       
 			     });
+
+					finding=d3.select('.homework3').append("ol").text( "Interesting Finding:");
+					finding.append("li").attr("class","finding").text("Most students have more Intructional time in Math than Science.");
+					finding.append("li").attr("class","finding").text("For most students the time spent in Math and Science is almost 1/3 of the total instructional time.")
+					finding.append("li").attr("class","finding").text("The students in Chile is the most diligent since they have the most instructional time per year.")
 			</script>
 
 	</body>
