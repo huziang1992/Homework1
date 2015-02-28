@@ -79,14 +79,24 @@ th{
   fill: black;
 }
 .tM{
-  opacity: 0.5;
+  opacity: 0.7;
   fill: red;
 
 }
 .tS{
-  opacity:0.8;
-  fill: white;
+  opacity:1;
+  fill: grey;
 }
 rect:hover{
   fill:orange;
+}
+.axis path,.axis line {
+         fill: none;
+         stroke: black;
+         shape-rendering: crispEdges;
+}
+.axis text {
+         font-family: sans-serif;
+         font-size: 10px;
+         fill:black;
 }

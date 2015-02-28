@@ -125,9 +125,10 @@
 				d3.json("data.json",function(data1){ 
 					
 					var wsvg=1000;
+					var hsvg=450
 					var w=800;
 					var h=400;
-					var padding=60;
+					var padding=50;
 					var barpadding=2;
 
 
@@ -135,13 +136,14 @@
 					
 
 					var yscale=d3.scale.linear().domain([0,max]).range([0,h-padding]);
+					var yscale1=d3.scale.linear().domain([0,max]).range([h-padding,0]);
 
 					svg=d3.select('.homework3').append("svg");
-					svg.attr("width",wsvg).attr("height",h);
+					svg.attr("width",wsvg).attr("height",hsvg);
 
                		svg.append("text")
 						.text(function(d){return "Comparison:Intructional Time in Mathematics and Science";})
-						.attr("x", 400)
+						.attr("x", 450)
 						.attr("y", 30)
 						.attr("font-family", "sans-serif")
 						.attr("font-size", "28px")
@@ -152,7 +154,7 @@
 				       .data(data1)
 				       .enter()
 				       .append("rect")
-				       .attr("x", function(d,i){return i*(w/data1.length);})
+				       .attr("x", function(d,i){return i*(w/data1.length)+40;})
 				       .attr("y", function(d){return h-yscale(d.tT) ; })
 				       .attr("width", w/ data1.length-barpadding)
 				       .attr("height", function(d){return yscale(d.tT);})
@@ -162,8 +164,8 @@
 				    	.data(data1)
 				       .enter()
 				       .append("rect")
-				       .attr("x", function(d,i){return i*(w/data1.length);})
-				       .attr("y", function(d){return h-yscale(d.tM) ; })
+				       .attr("x", function(d,i){return i*(w/data1.length)+40;})
+				       .attr("y", function(d){return h-yscale(d.tM); })
 				       .attr("width", w / data1.length-barpadding)
 				       .attr("height", function(d){return yscale(d.tM);})
 				       .attr("class","tM");
@@ -172,12 +174,66 @@
 				    	.data(data1)
 				       .enter()
 				       .append("rect")
-				       .attr("x", function(d,i){return i*(w/data1.length);})
-				       .attr("y", function(d){return h-yscale(d.tS)-yscale(d.tM) ; })
+				       .attr("x", function(d,i){return i*(w/data1.length)+40;})
+				       .attr("y", function(d){return h-yscale(d.tS)-yscale(d.tM); })
 				       .attr("width", w / data1.length-barpadding)
 				       .attr("height", function(d){return yscale(d.tS);})
 				       .attr("class","tS");
 
+				    svg.append("rect")
+				    	.attr("x", 850)
+				       .attr("y", 200)
+				       .attr("width", 20)
+				       .attr("height", 20)
+				       .attr("class","tT");
+
+				    svg.append("rect")
+				    	.attr("x", 850)
+				       .attr("y", 250)
+				       .attr("width", 20)
+				       .attr("height", 20)
+				       .attr("class","tS");
+
+				    svg.append("rect")
+				    	.attr("x", 850)
+				       .attr("y", 300)
+				       .attr("width", 20)
+				       .attr("height", 20)
+				       .attr("class","tM");
+
+				    svg.append("text")
+				    	.attr("x", 880)
+				       .attr("y", 210)
+				       .text("Total instructional hours per year");
+
+				    svg.append("text")
+				    	.attr("x", 890)
+				       .attr("y", 220)
+				       .text(" hours per year");
+
+
+				    svg.append("text")
+				    	.attr("x", 880)
+				       .attr("y", 265)
+				       .text("Time in Science");
+
+				    svg.append("text")
+				    	.attr("x", 880)
+				       .attr("y", 315)
+				       .text("Time in Math");
+
+
+
+
+					var yAxis = d3.svg.axis()
+					                      .scale(yscale1)
+					                      .orient("left")
+					                      .ticks(10);
+
+                    svg.append("g")
+				        .attr("class", "axis")
+				        .attr("transform", "translate(33," +  (padding) + ")")
+				        .call(yAxis);
 
 
 				       
