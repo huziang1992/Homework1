@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ziang Hu- Homework</title>
+		<script src="jquery.js"></script> 
+		<link type="text/css" rel="stylesheet" href="jquery-ui.css"/>
+		<link type="text/css" rel="stylesheet" href="stylesheet.css"/>
+		<script type="text/javascript" src="script.js"></script>
+		<script src="jquery-ui.min.js"></script>
+		<script type="text/javascript" src="d3/d3.js"></script> 
+		<script src="exam1.js"></script>
+		<script>
+				  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+				  ga('create', 'UA-60217953-1', 'auto');
+				  ga('send', 'pageview');
+
+		</script>
+	</head>
+
+	<body>
+
+		
+			<div ID="head"><p>IE590 Ziang Hu</p></div>
+			
+			<div id="accordion">
+				<h3>Exam1</h3>
+				<div class="exam1">
+				</div>
+
+
+
+
+				<h3>homework3</h3>
+				<div class="homework3">
+					
+				</div>
+				<h3>homework2</h3>
+				<div class="homework2">
+				<div ID="requirement">
+					<p>The Minimum requirement for each criteria is as followed:</p>
+					<ul>
+						<li> GPA : 3.5</li>
+						<li> GRE_V : 145</li>
+						<li> GRE_Q : 160</li>
+						<li> Essay : 2</li>
+						<li> Recommendation : 2</li>
+					</ul>
+					<p>All the data below this ruquirement will be marked</p>
+
+				</div>
+				<table>
+					<thead>
+						<th>Name</th>
+						<th>GPA</th>
+						<th>GRE_V</th>
+						<th>GRE_Q</th>
+						<th>Essay</th>
+						<th>Recom</th>
+					</thead>
+					<tbody>
+
+					</tbody>
+
+				</table>
+
+				</div>
+
+				<h3>homework1</h3>
+				<div>
+			          <div ID="left"></div>
+
+			          <div ID="right"></div>
+			          <div ID="middle">
+			            <table border=1px>
+			              <thead>
+			                <tr>
+			                  <th colspan="2"><p>Self Introduction</p></th>
+			                </tr>
+			              </thead>
+
+			              <tbody>
+			                <tr>
+			                  <td><p class="c1">Name</p></td>
+			                  <td><p class="c2">Ziang Hu</p></td>
+			                </tr>
+
+			                <tr>
+			                  <td><p class="c1">Nationality</p></td>
+			                  <td><p class="c2">China</p></td>
+			                </tr>
+
+			                <tr>
+			                  <td><p class="c1">Education</p></td>
+			                  <td><p class="c2">Off-campus M.eng.@Purdue University</p>
+			                      <p class="c2">B.E.@Zhejiang University</p>
+			                  </td>
+
+			                </tr>
+
+			                <tr>
+			                  <td><p class="c1">Major</p></td>
+			                  <td><p class="c2">Industrial Engineering</p></td>
+			                </tr>
+
+			                <tr>
+			                  <td><p class="c1">Computer Skill</p></td>
+			                  <td><p class="c2">C (3 years)</p>
+			                      <p class="c2">SQL (2 years)</p>
+			                  </td>
+			                </tr>
+
+			                <tr>
+			                  <td><p class="c1">Personality</p></td>
+			                  <td><p class="c2">Easy-going, Eager to make new friends</p>
+
+			                  </td>
+			                </tr>
+
+			                </tr>
+			              </tbody>
+			            </table>
+
+
+          </div>
+
+
+
+
+
+				</div>
+
+			</div>
+
+			<script type="text/javascript">
+
+					var wsvg=1000;
+					var hsvg=450
+					
+					svg=d3.select('.homework3').append("svg");
+					svg.attr("width",wsvg).attr("height",hsvg);
+
+					d3.json("data.json",function(data1){ 
+					
+					
+					var w=800;
+					var h=400;
+					var padding=50;
+					var barpadding=2;
+
+
+					max=d3.max(data1,function(d){return d.tT;});
+					
+
+					var yscale=d3.scale.linear().domain([0,max]).range([0,h-padding]);
+					var yscale1=d3.scale.linear().domain([0,max]).range([h-padding,0]);
+
+
+
+
+
+					svg.selectAll("rect")
+				       .data(data1)
+				       .enter()
+				       .append("rect")
+				       .attr("x", function(d,i){return i*(w/data1.length)+40;})
+				       .attr("y", function(d){return h-yscale(d.tT) ; })
+				       .attr("width", w/ data1.length-barpadding)
+				       .attr("height", function(d){return yscale(d.tT);})
+				       .attr("class","tT")
+				      	.append("svg:title")
+   						.text(function(d) { return d.Country +" Total time:"+ d.tT; });
+				       
+				    svg.selectAll(".tM")
+				    	.data(data1)
+				       .enter()
+				       .append("rect")
+				       .attr("x", function(d,i){return i*(w/data1.length)+40;})
+				       .attr("y", function(d){return h-yscale(d.tM); })
+				       .attr("width", w / data1.length-barpadding)
+				       .attr("height", function(d){return yscale(d.tM);})
+				       .attr("class","tM")
+				       .append("svg:title")
+   						.text(function(d) { return d.Country +" Time in Math:"+ d.tM; });
+
+				    svg.selectAll(".tS")
+				    	.data(data1)
+				       .enter()
+				       .append("rect")
+				       .attr("x", function(d,i){return i*(w/data1.length)+40;})
+				       .attr("y", function(d){return h-yscale(d.tS)-yscale(d.tM); })
+				       .attr("width", w / data1.length-barpadding)
+				       .attr("height", function(d){return yscale(d.tS);})
+				       .attr("class","tS")
+				       .append("svg:title")
+   						.text(function(d) { return d.Country +" Time in Science:"+ d.tS; });
+
+				    svg.append("rect")
+				    	.attr("x", 850)
+				       .attr("y", 200)
+				       .attr("width", 20)
+				       .attr("height", 20)
+				       .attr("class","tT");
+
+				    svg.append("rect")
+				    	.attr("x", 850)
+				       .attr("y", 250)
+				       .attr("width", 20)
+				       .attr("height", 20)
+				       .attr("class","tS");
+
+				    svg.append("rect")
+				    	.attr("x", 850)
+				       .attr("y", 300)
+				       .attr("width", 20)
+				       .attr("height", 20)
+				       .attr("class","tM");
+
+				    svg.append("text")
+				    	.attr("x", 880)
+				       .attr("y", 210)
+				       .text("Total instructional hours per year");
+
+				    svg.append("text")
+				    	.attr("x", 890)
+				       .attr("y", 220)
+				       .text(" hours per year");
+
+
+				    svg.append("text")
+				    	.attr("x", 880)
+				       .attr("y", 265)
+				       .text("Time in Science");
+
+				    svg.append("text")
+				    	.attr("x", 880)
+				       .attr("y", 315)
+				       .text("Time in Math");
+
+
+
+
+					var yAxis = d3.svg.axis()
+					                      .scale(yscale1)
+					                      .orient("left")
+					                      .ticks(10);
+
+                    svg.append("g")
+				        .attr("class", "axis")
+				        .attr("transform", "translate(33," +  (padding) + ")")
+				        .call(yAxis);
+
+				    svg.append("text")
+						.text(function(d){return "Comparison:Instructional Time in Mathematics and Science";})
+						.attr("x", 450)
+						.attr("y", 30)
+						.attr("font-family", "sans-serif")
+						.attr("font-size", "28px")
+						.attr("fill", "black")
+						.attr("text-anchor", "middle");
+
+				    svg.append("text")
+				    	.attr("x", 40)
+				       .attr("y", 430)
+				       .text("Data source: http://nces.ed.gov/programs/digest/d12/tables/dt12_460.asp");
+
+				    svg.append("text")
+				    	.attr("x", 700)
+				       .attr("y", 60)
+				       .text("----By Ziang Hu");
+
+				       
+			     });
+
+					finding=d3.select('.homework3').append("ol").text( "Interesting Finding:");
+					finding.append("li").attr("class","finding").text("Most students have more Intructional time in Math than Science.");
+					finding.append("li").attr("class","finding").text("For most students the time spent in Math and Science is almost 1/3 of the total instructional time.")
+					finding.append("li").attr("class","finding").text("The students in Chile is the most diligent since they have the most instructional time per year.")
+
+					feedback=d3.select('.homework3').append("ul").text( "Feedback from Google Analytics(till 3/1/2015):");
+					feedback.append("li").attr("class","finding").text(" 46 persons have visited my page and the Avg. Session Duration is 30 sec.");
+					feedback.append("li").attr("class","finding").text(" Most of them came from Weichat(A social App).");
+					brower=feedback.append("li").attr("class","finding").text(" The browser they use are as below:")
+					d3.select('.homework3').append("img").attr("src","Browser.png").attr("class","Browser");
+			</script>
+
+
+
+
+	</body>
+
+
+
+</html>
