@@ -44,8 +44,8 @@ d3.json("exam1.json",function(dataset){
 		var w=500;
 		var h=400;
 					
-		svg=d3.select('.exam1_3_2').append("svg");
-		svg.attr("width",wsvg).attr("height",hsvg).attr("id","exam1_3_2");
+		svg=d3.select('.exam1_3_3').append("svg");
+		svg.attr("width",wsvg).attr("height",hsvg).attr("id","exam1_3_3");
 
 		var xscale=d3.scale.ordinal()
 					.domain(d3.range(total.length))
@@ -95,7 +95,7 @@ d3.json("exam1.json",function(dataset){
 			.attr("class","sophomore");
 
 		svg.selectAll(".junior")
-			.data(junior)
+            .data(junior)
 			.enter()
 			.append("rect")
 			.attr("x",function(d,i){
@@ -127,30 +127,6 @@ d3.json("exam1.json",function(dataset){
 			.attr("class","senior");
 
 
-
-
-		svg.selectAll("rect")
-			.data(senior)
-			.enter()
-			.append("rect")
-			.attr("x",function(d,i){
-				return(xscale(i));
-				})
-			.attr("y",function(d){
-				return h-yscale(d)+padding;
-			})
-			.attr("width",xscale.rangeBand())
-			.attr("height",function(d){
-				return yscale(d);
-			});
-
-
-
-
-
-
-
-
 		svg.selectAll("text")
 	       .data(total)
 	       .enter()
@@ -161,7 +137,7 @@ d3.json("exam1.json",function(dataset){
 	       .attr("font-family", "sans-serif")
 	       .attr("font-size", "11px")
 	       .attr("fill", "black")
-	       .attr("text-anchor", "middle");	
+	       .attr("text-anchor", "middle");	  
 
 		
 	     svg.selectAll(".mark")
