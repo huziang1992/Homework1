@@ -3,7 +3,7 @@ $(document).ready(
 
 d3.json("exam1.json",function(dataset){ 
 
-		var senior=[dataset[3]["University A"],dataset[3]["University B"],dataset[3]["University C"],dataset[3]["University D"],dataset[3]["University E"]];
+		var senior=[];
 		var mark=[];
 
 		for(item in dataset[3])
@@ -11,6 +11,11 @@ d3.json("exam1.json",function(dataset){
 			if(item!="Year")
 			mark.push(""+item+"");
 		}
+		for(var i=0;i<mark.length;i++)
+		{
+			senior.push( dataset[3][""+mark[i]+""] );
+		}
+		console.log(senior);
 
 		var wsvg=800;
 		var hsvg=550;
@@ -18,8 +23,8 @@ d3.json("exam1.json",function(dataset){
 		var w=500;
 		var h=400;
 					
-		svg=d3.select('.exam1').append("svg");
-		svg.attr("width",wsvg).attr("height",hsvg).attr("id","exam1");
+		svg=d3.select('.exam1_3_1').append("svg");
+		svg.attr("width",wsvg).attr("height",hsvg).attr("id","exam1_3_1");
 
 		var xscale=d3.scale.ordinal()
 					.domain(d3.range(senior.length))
@@ -117,6 +122,24 @@ d3.json("exam1.json",function(dataset){
 	     	.attr("y",25)
 	       .attr("font-family", "sans-serif")
 	       .attr("font-size", "30px")
+	       .attr("fill", "black")
+	       .attr("text-anchor", "left");
+
+	       svg.append("text")
+	     	.text("---by Ziang Hu")
+	     	.attr("x",600)
+	     	.attr("y",70)
+	       .attr("font-family", "sans-serif")
+	       .attr("font-size", "20px")
+	       .attr("fill", "black")
+	       .attr("text-anchor", "left");
+
+	       svg.append("text")
+	     	.text("Data sourse: http://hivelab.org/static/exam1.json")
+	     	.attr("x",100)
+	     	.attr("y",520)
+	       .attr("font-family", "sans-serif")
+	       .attr("font-size", "15px")
 	       .attr("fill", "black")
 	       .attr("text-anchor", "left");
 

@@ -30,7 +30,7 @@ div{
 
 table{
   width:60%;
-  height:100%;
+  height:50%;
   margin:auto;
   text-align:center;
   border:2px solid black;
@@ -138,8 +138,31 @@ ul{
          font-size: 10px;
          fill:none;
 }
-#exam1{
+#exam1_3_1{
   margin-left:20%;
+  margin-top:10%;
 
 }
+.freshman{
+  fill:#993366;
+
+}
+.sophomore{
+  fill:#663399;
+
+}
+.junior{
+  fill:#6699CC;
+}
+.senior{
+  fill:#66CCCC;
+
+}
+
+#exam1_3_2{
+  margin-left:20%;
+  margin-top:10%;
+
+}
+
 
