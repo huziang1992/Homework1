@@ -143,23 +143,30 @@ ul{
   margin-top:10%;
 
 }
-.freshman{
+.freshman,.freshmanmark{
   fill:#993366;
 
 }
-.sophomore{
+.sophomore,.sophomoremark{
   fill:#663399;
 
 }
-.junior{
+.junior,.juniormark{
   fill:#6699CC;
 }
-.senior{
+.senior,.seniormark{
   fill:#66CCCC;
 
 }
 
 #exam1_3_2{
+  margin-left:20%;
+  margin-top:10%;
+
+}
+
+
+#exam1_3_3{
   margin-left:20%;
   margin-top:10%;
 

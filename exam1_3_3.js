@@ -137,10 +137,11 @@ d3.json("exam1.json",function(dataset){
 	       .attr("font-family", "sans-serif")
 	       .attr("font-size", "11px")
 	       .attr("fill", "black")
-	       .attr("text-anchor", "middle");	  
+	       .attr("text-anchor", "middle")
+	       .attr("class","toptotal");	  
 
 		
-	     svg.selectAll(".mark")
+	     svg.selectAll(".mark") //bottom mark
 	       .data(mark)
 	       .enter()
 	       .append("text")
@@ -177,7 +178,7 @@ d3.json("exam1.json",function(dataset){
 	     	.attr("y",325)
 	     	.attr("height",20)
 	     	.attr("width",20)
-	     	.attr("class","freshman");
+	     	.attr("class","freshmanmark");
 
 	       svg.append("text") //freshman text
 	     	.text("freshman")
@@ -193,7 +194,7 @@ d3.json("exam1.json",function(dataset){
 	     	.attr("y",285)
 	     	.attr("height",20)
 	     	.attr("width",20)
-	     	.attr("class","sophomore");
+	     	.attr("class","sophomoremark");
 
 	       svg.append("text")  //sophomore text
 	     	.text("sophomore")
@@ -209,7 +210,7 @@ d3.json("exam1.json",function(dataset){
 	     	.attr("y",245)
 	     	.attr("height",20)
 	     	.attr("width",20)
-	     	.attr("class","junior");
+	     	.attr("class","juniormark");
 
 	       svg.append("text") //junior text
 	     	.text("junior")
@@ -225,7 +226,7 @@ d3.json("exam1.json",function(dataset){
 	     	.attr("y",205)
 	     	.attr("height",20)
 	     	.attr("width",20)
-	     	.attr("class","senior");
+	     	.attr("class","seniormark");
 
 	       svg.append("text") //senior text
 	     	.text("senior")
@@ -236,7 +237,170 @@ d3.json("exam1.json",function(dataset){
 	       .attr("fill", "black")
 	       .attr("text-anchor", "left");
 
+	       d3.selectAll(".freshman")  //click on freshman
+	        .on("click",function(){
+	        		
+	        		svg.selectAll(".freshman")
+                	.transition()
+                	.duration(500)
+	        		.attr("y",h+padding);
 
+					svg.selectAll(".sophomore")
+						.data(sophomore)
+						 .transition()
+                		.duration(500)
+						.attr("y",function(d){
+							return h-yscale(d)+padding;});
+
+					svg.selectAll(".junior")
+			            .data(junior)
+						 .transition()
+                		.duration(500)
+						.attr("y",function(d,i){
+							return h-yscale(d)+padding-yscale(sophomore[i]);
+						});
+
+					svg.selectAll(".senior")
+						.data(senior)
+						.transition()
+                		.duration(500)
+						.attr("y",function(d,i){
+							return h-yscale(d)+padding-yscale(sophomore[i])-yscale(junior[i]);
+						});
+						
+					svg.selectAll(".toptotal")
+				       .data(total)
+				       	.transition()
+                		.duration(500)
+				       .attr("y", function(d,i){
+				       	return h-yscale(d)+padding-10+yscale(freshman[i]); 
+				       });	
+
+
+	        });
+	
+		       d3.selectAll(".sophomore") //click on sophomore
+	       		 .on("click",function(){
+	        		
+	        		svg.selectAll(".sophomore")
+                	.transition()
+                	.duration(500)
+	        		.attr("y",h+padding);
+
+					svg.selectAll(".freshman")
+						.data(freshman)
+						 .transition()
+                		.duration(500)
+						.attr("y",function(d){
+							return h-yscale(d)+padding;});
+
+					svg.selectAll(".junior")
+			            .data(junior)
+						 .transition()
+                		.duration(500)
+						.attr("y",function(d,i){
+							return h-yscale(d)+padding-yscale(freshman[i]);
+						});
+
+					svg.selectAll(".senior")
+						.data(senior)
+						.transition()
+                		.duration(500)
+						.attr("y",function(d,i){
+							return h-yscale(d)+padding-yscale(freshman[i])-yscale(junior[i]);
+						});
+						
+					svg.selectAll(".toptotal")
+				       .data(total)
+				       	.transition()
+                		.duration(500)
+				       .attr("y", function(d,i){
+				       	return h-yscale(d)+padding-10+yscale(sophomore[i]); 
+				       });	
+
+	        });
+			
+				d3.selectAll(".junior") //click on junior
+	       		 	.on("click",function(){
+	        		
+	        		svg.selectAll(".junior")
+                	.transition()
+                	.duration(500)
+	        		.attr("y",h+padding);
+
+					svg.selectAll(".freshman")
+						.data(freshman)
+						 .transition()
+                		.duration(500)
+						.attr("y",function(d){
+							return h-yscale(d)+padding;});
+
+					svg.selectAll(".sophomore")
+			            .data(sophomore)
+						 .transition()
+                		.duration(500)
+						.attr("y",function(d,i){
+							return h-yscale(d)+padding-yscale(freshman[i]);
+						});
+
+					svg.selectAll(".senior")
+						.data(senior)
+						.transition()
+                		.duration(500)
+						.attr("y",function(d,i){
+							return h-yscale(d)+padding-yscale(freshman[i])-yscale(sophomore[i]);
+						});
+						
+					svg.selectAll(".toptotal")
+				       .data(total)
+				       	.transition()
+                		.duration(500)
+				       .attr("y", function(d,i){
+				       	return h-yscale(d)+padding-10+yscale(junior[i]); 
+				       });	
+
+	        });
+
+					d3.selectAll(".senior") //click on senior
+	       		 		.on("click",function(){
+	        		
+		        		svg.selectAll(".senior")
+		                	.transition()
+		                	.duration(500)
+			        		.attr("y",h+padding);
+
+						svg.selectAll(".freshman")
+							.data(freshman)
+							 .transition()
+	                		.duration(500)
+							.attr("y",function(d){
+								return h-yscale(d)+padding;});
+
+						svg.selectAll(".sophomore")
+				            .data(sophomore)
+							 .transition()
+	                		.duration(500)
+							.attr("y",function(d,i){
+								return h-yscale(d)+padding-yscale(freshman[i]);
+							});
+
+						svg.selectAll(".junior")
+							.data(junior)
+							.transition()
+	                		.duration(500)
+							.attr("y",function(d,i){
+								return h-yscale(d)+padding-yscale(freshman[i])-yscale(sophomore[i]);
+							});
+							
+						svg.selectAll(".toptotal")
+					       .data(total)
+					       	.transition()
+	                		.duration(500)
+					       .attr("y", function(d,i){
+					       	return h-yscale(d)+padding-10+yscale(senior[i]); 
+				       });	
+
+	        });
 
 
 
@@ -261,7 +425,7 @@ d3.json("exam1.json",function(dataset){
 	       svg.append("text")
 	     	.text("Data sourse: http://hivelab.org/static/exam1.json")
 	     	.attr("x",100)
-	     	.attr("y",520)
+	     	.attr("y",50)
 	       .attr("font-family", "sans-serif")
 	       .attr("font-size", "15px")
 	       .attr("fill", "black")
