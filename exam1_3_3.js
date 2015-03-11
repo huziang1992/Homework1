@@ -75,7 +75,9 @@ d3.json("exam1.json",function(dataset){
 			.attr("height",function(d){
 				return yscale(d);
 			})
-			.attr("class","freshman");
+			.attr("class","freshman")
+			.append("svg:title")
+   			.text(function(d,i) { return "Freshman:"+d ;});
 
 
 		svg.selectAll(".sophomore")
@@ -92,7 +94,9 @@ d3.json("exam1.json",function(dataset){
 			.attr("height",function(d){
 				return yscale(d);
 			})
-			.attr("class","sophomore");
+			.attr("class","sophomore")
+			.append("svg:title")
+   			.text(function(d,i) { return "Sophomore:"+d; });
 
 		svg.selectAll(".junior")
             .data(junior)
@@ -108,7 +112,9 @@ d3.json("exam1.json",function(dataset){
 			.attr("height",function(d){
 				return yscale(d);
 			})
-			.attr("class","junior");
+			.attr("class","junior")
+			.append("svg:title")
+   			.text(function(d,i) { return "Junior:"+d; });
 
 		svg.selectAll(".senior")
 			.data(senior)
@@ -124,7 +130,9 @@ d3.json("exam1.json",function(dataset){
 			.attr("height",function(d){
 				return yscale(d);
 			})
-			.attr("class","senior");
+			.attr("class","senior")
+			.append("svg:title")
+   			.text(function(d,i) { return "Senior:"+d; });
 
 
 		svg.selectAll("text")
