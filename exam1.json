@@ -1,0 +1,34 @@
+[
+   {
+      "Year":"Freshman",
+      "University A":120,
+      "University B":63,
+      "University C":55,
+      "University D":124,
+      "University E":90
+   },
+   {
+      "Year":"Sophomore",
+      "University A":98,
+      "University B":70,
+      "University C":40,
+      "University D":90,
+      "University E":93
+   },
+   {
+      "Year":"Junior",
+      "University A":100,
+      "University B":92,
+      "University C":48,
+      "University D":101,
+      "University E":99
+   },
+   {
+      "Year":"Senior",
+      "University A":90,
+      "University B":91,
+      "University C":46,
+      "University D":100,
+      "University E":92
+   }
+] 
