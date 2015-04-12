@@ -99,7 +99,7 @@
 								      	else return color(d.key);
 								      })
 								      .style("opacity",function(d){
-								      	if(d.depth==1) return 0.9;
+								      	if(d.depth==1) return 0.8;
 								      	else return 1;
 								      })
 								      .style("z-index",function(d){
@@ -141,7 +141,7 @@
 				      	else return color(d.key);
 				      })
 				      .style("opacity",function(d){
-				      	if(d.depth==1) return 0.9;
+				      	if(d.depth==1) return 0.8;
 				      	else return 1;
 				      })
 				      .style("z-index",function(d){
