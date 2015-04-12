@@ -15,7 +15,7 @@ d3.json("exam1.json",function(dataset){
 		{
 			senior.push( dataset[3][""+mark[i]+""] );
 		}
-		console.log(senior);
+		//console.log(senior);
 
 		var wsvg=800;
 		var hsvg=550;
