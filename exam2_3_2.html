@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ziang Hu-Exam2_3.2</title>
+    <script type="text/javascript" src="d3/d3.js"></script>
+    <style type="text/css">
+#head{
+	margin-left:25%;
+	font-size: 40px;
+	margin-bottom: 0px;
+}
+#head2{
+	margin-right:20%;
+	font-size: 30px;
+	float: right;
+	margin-top:0px;
+}
+#datasource{
+	margin-left:30%;
+	font-size: 20px;
+	margin-top:25px;
+}
+table{
+	width:50%;
+  height:30%;
+  margin:auto;
+  text-align:right;
+}
+table th{
+	background: lightgrey;
+}
+table td{
+	width:40px;
+}
+
+h1{
+
+   pointer-events:none;
+
+}
+p{
+   pointer-events:none;
+	
+}
+
+</style>
+  </head>
+  
+<body>
+<h1 id="head">Spreadsheet with Typical Sorting of 3.2</h1>  
+<h1 id="head2">----Ziang Hu</h1>
+<a href="http://hivelab.org/static/exam2.json"> <h1 id="datasource"> Data source: http://hivelab.org/static/exam2.json </h1> </a>
+
+<table id="spreadsheet"border=1px>
+              <thead>
+                <tr>
+				        <th ><p>ItemNo</p></th>
+                  <th ><p>A</p></th>
+                  <th ><p>B</p></th>
+                  <th ><p>C</p></th>
+                  <th ><p>D</p></th>
+                  <th ><p>E</p></th>
+                  <th ><p>F</p></th>
+                  <th ><p>G</p></th>
+                </tr>
+              </thead>
+
+              <tbody>
+               
+              </tbody>
+            </table>
+
+<script type="text/javascript">
+
+          var sortorder=0;
+
+      		d3.json("exam2.json",function(dataset){
+
+
+      			//console.log(dataset);
+
+      		var  row=d3.select("tbody")
+      				.selectAll(".row")
+      				.data(dataset)
+      				.enter()
+      				.append("tr")
+      				.attr("class","row")
+      				.attr("click","N");
+
+      		var cell=row.append("td")
+      					.text(function(d){return d.ItemNo})
+      					.attr("class","cell")
+                .attr("id","ItemNo");
+
+      				row.append("td")
+      					.text(function(d){return d.A})
+      					 .attr("class","cell");
+
+      				row.append("td")
+      					.text(function(d){return d.B})
+      					 .attr("class","cell");
+
+      				row.append("td")
+      					.text(function(d){return d.C})
+      					.attr("class","cell");
+
+      				row.append("td")
+      					.text(function(d){return d.D})
+      					.attr("class","cell");
+
+      				row.append("td")
+      					.text(function(d){return d.E})
+      					.attr("class","cell");
+
+      				row.append("td")
+      					.text(function(d){return d.F})
+      					.attr("class","cell");
+
+      				row.append("td")
+      					.text(function(d){return d.G})
+      					.attr("class","cell");
+
+              highlight();
+
+            d3.selectAll("th")
+                .attr("class","sort")
+                .on("click",function(){
+
+                    d3.selectAll("th").style("background","lightgray");
+
+                    d3.select(this).style("background","GoldenRod");
+
+
+                   var x=d3.select(this).text();
+
+                    
+                    dataset.sort(function(a,b){
+
+                      if(sortorder==1)
+                      return a[""+x+""]>b[""+x+""]? 1:-1 ;
+                      if(sortorder==0)
+                      return a[""+x+""]<b[""+x+""]? 1:-1 ; 
+
+                    });
+
+                    sortorder=!sortorder;
+
+                    d3.selectAll(".row").data(dataset);
+
+                    d3.selectAll(".cell").remove();
+
+                    row.append("td")
+                        .text(function(d){return d.ItemNo})
+                        .attr("class","cell")
+                        .attr("id","ItemNo");
+
+                      row.append("td")
+                        .text(function(d){return d.A})
+                         .attr("class","cell");
+
+                      row.append("td")
+                        .text(function(d){return d.B})
+                         .attr("class","cell");
+
+                      row.append("td")
+                        .text(function(d){return d.C})
+                        .attr("class","cell");
+
+                      row.append("td")
+                        .text(function(d){return d.D})
+                        .attr("class","cell");
+
+                      row.append("td")
+                        .text(function(d){return d.E})
+                        .attr("class","cell");
+
+                      row.append("td")
+                        .text(function(d){return d.F})
+                        .attr("class","cell");
+
+                      row.append("td")
+                        .text(function(d){return d.G})
+                        .attr("class","cell");
+
+                      highlight();
+
+                      
+
+
+                });
+
+
+      		});
+function highlight(){
+
+            d3.selectAll(".cell")
+              .on("mouseover",function(d){
+
+                  var rowmark=d.ItemNo;
+
+                  //console.log(rowmark);
+
+                   d3.selectAll(".row")
+                    .style("background",function(d){
+                      if(d3.select(this).attr("click")=="N")
+                      {if(d.ItemNo == rowmark)
+                        return "yellow";
+                      else
+                        return "none";}
+                      if(d3.select(this).attr("click")=="Y")
+                        return "green";
+
+                    });
+              })
+              .on("mouseout",function(d){
+
+                  d3.selectAll(".row")
+                    .style("background",function(d){
+                      if(d3.select(this).attr("click")=="N")
+                        return "none";
+                      if(d3.select(this).attr("click")=="Y")
+                        return "green";
+
+                    });
+
+
+
+              })
+              .on("click",function(d){
+
+
+                  var rowmark=d.ItemNo;
+
+                  d3.selectAll(".row").attr("click",function(d){
+
+                      if(d.ItemNo==rowmark)
+                        return "Y";
+                      else
+                        return "N";
+
+
+                  });
+
+                   d3.selectAll(".row")
+                    .style("background",function(d){
+                      if(d.ItemNo == rowmark)
+                        return "green";
+                    });
+
+                });
+
+
+
+
+
+}
+
+
+
+    </script>
+  </body>
+</html>
